@@ -1,0 +1,7 @@
+.vs/
+[oO]bj/
+[oO]utput/
+[pP]roperties/
+
+*.sln
+*.csproj

@@ -1,0 +1,19 @@
+# Visual Studio generated .clang-format file
+
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+ColumnLimit: 180
+
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+BreakBeforeBraces: Allman
+
+AlignConsecutiveDeclarations: true
+
+AllowShortFunctionsOnASingleLine: Empty
+
+NamespaceIndentation: All
+
+AlwaysBreakTemplateDeclarations: Yes
