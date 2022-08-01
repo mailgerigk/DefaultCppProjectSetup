@@ -36,6 +36,11 @@ public abstract class BaseProject : Project
         conf.PrecompHeader = $"{Name}_stdafx.hpp";
         conf.PrecompSource = $"{Name}_stdafx.cpp";
 
+        if (Directory.Exists(SourceRootPath))
+        {
+            Directory.CreateDirectory(SourceRootPath);
+        }
+
         var precompHeaderPath = Path.Combine(SourceRootPath, conf.PrecompHeader);
         if (!File.Exists(precompHeaderPath))
         {
