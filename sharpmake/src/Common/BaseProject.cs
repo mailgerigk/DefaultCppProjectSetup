@@ -54,4 +54,16 @@ public abstract class BaseProject : Project
             File.WriteAllText(precompSourcePath, $"#include \"{conf.PrecompHeader}\"{Environment.NewLine}");
         }
     }
+
+    public virtual string SolutionFolder => string.Empty;
+
+    public static string GetSolutionFolder(Type projectType)
+    {
+        var projectObject = Activator.CreateInstance(projectType);
+        if (projectObject is BaseProject project)
+        {
+            return project.SolutionFolder;
+        }
+        return string.Empty;
+    }
 }

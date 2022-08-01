@@ -36,7 +36,7 @@ public sealed class DefaultSolution : Solution
             .Where(type => typeof(BaseProject).IsAssignableFrom(type) && !type.IsAbstract);
         foreach (var projectType in projectTypes)
         {
-            conf.AddProject(projectType, target);
+            conf.AddProject(projectType, target, solutionFolder: BaseProject.GetSolutionFolder(projectType));
         }
 
         conf.SetStartupProject<MainProject>();
