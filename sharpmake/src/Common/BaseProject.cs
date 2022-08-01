@@ -1,5 +1,7 @@
 using Sharpmake;
 
+using System;
+using System.IO;
 
 public abstract class BaseProject : Project
 {
@@ -30,5 +32,20 @@ public abstract class BaseProject : Project
         conf.TargetPath = BaseConfiguration.ProjectTargetDirectory;
         conf.IntermediatePath = BaseConfiguration.ProjectIntermidiateDirectory;
         conf.BaseIntermediateOutputPath = BaseConfiguration.ProjectIntermidiateDirectory;
+
+        conf.PrecompHeader = $"{Name}_stdafx.hpp";
+        conf.PrecompSource = $"{Name}_stdafx.cpp";
+
+        var precompHeaderPath = Path.Combine(SourceRootPath, conf.PrecompHeader);
+        if (!File.Exists(precompHeaderPath))
+        {
+            File.WriteAllText(precompHeaderPath, $"#pragma once{Environment.NewLine}");
+        }
+
+        var precompSourcePath = Path.Combine(SourceRootPath, conf.PrecompSource);
+        if (!File.Exists(precompSourcePath))
+        {
+            File.WriteAllText(precompSourcePath, $"#include \"{conf.PrecompHeader}\"{Environment.NewLine}");
+        }
     }
 }

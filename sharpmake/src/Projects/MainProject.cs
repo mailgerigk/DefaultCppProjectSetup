@@ -13,7 +13,6 @@ public sealed class MainProject : BaseProject
     {
         base.Configure(conf, target);
 
-        conf.PrecompHeader = $"stdafx.hpp";
-        conf.PrecompSource = $"stdafx.cpp";
+        // TODO: insert dependencies here
     }
 }
