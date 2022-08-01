@@ -17,6 +17,8 @@ public sealed class DefaultSolution : Solution
 {
     public DefaultSolution()
     {
+        BaseConfiguration.DefaultSolutionSharpmakeCsPath = SharpmakeCsPath;
+
         Name = BaseConfiguration.SolutionName;
         AddTargets(BaseConfiguration.Target);
     }

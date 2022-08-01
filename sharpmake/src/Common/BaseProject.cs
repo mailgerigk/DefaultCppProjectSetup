@@ -18,7 +18,7 @@ public abstract class BaseProject : Project
 
         conf.Options.Add(Options.Vc.Compiler.Exceptions.Enable);
 
-        if(target.Optimization == Optimization.Debug)
+        if (target.Optimization == Optimization.Debug)
         {
             conf.Options.Add(Options.Vc.Compiler.Inline.Disable);
         }
@@ -36,18 +36,19 @@ public abstract class BaseProject : Project
         conf.PrecompHeader = $"{Name}_stdafx.hpp";
         conf.PrecompSource = $"{Name}_stdafx.cpp";
 
-        if (Directory.Exists(SourceRootPath))
+        var absoluteSourceRootPath = Path.GetFullPath(SourceRootPath);
+        if (!Directory.Exists(absoluteSourceRootPath))
         {
-            Directory.CreateDirectory(SourceRootPath);
+            Directory.CreateDirectory(absoluteSourceRootPath);
         }
 
-        var precompHeaderPath = Path.Combine(SourceRootPath, conf.PrecompHeader);
+        var precompHeaderPath = Path.Combine(absoluteSourceRootPath, conf.PrecompHeader);
         if (!File.Exists(precompHeaderPath))
         {
             File.WriteAllText(precompHeaderPath, $"#pragma once{Environment.NewLine}");
         }
 
-        var precompSourcePath = Path.Combine(SourceRootPath, conf.PrecompSource);
+        var precompSourcePath = Path.Combine(absoluteSourceRootPath, conf.PrecompSource);
         if (!File.Exists(precompSourcePath))
         {
             File.WriteAllText(precompSourcePath, $"#include \"{conf.PrecompHeader}\"{Environment.NewLine}");
