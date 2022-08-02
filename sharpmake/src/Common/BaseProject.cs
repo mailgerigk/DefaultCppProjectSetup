@@ -33,8 +33,8 @@ public abstract class BaseProject : Project
         conf.IntermediatePath = BaseConfiguration.ProjectIntermidiateDirectory;
         conf.BaseIntermediateOutputPath = BaseConfiguration.ProjectIntermidiateDirectory;
 
-        conf.PrecompHeader = $"{Name}_stdafx.hpp";
-        conf.PrecompSource = $"{Name}_stdafx.cpp";
+        conf.PrecompHeader = conf.PrecompHeader == null ? $"{Name}_stdafx.hpp" : conf.PrecompHeader;
+        conf.PrecompSource = conf.PrecompSource == null ? $"{Name}_stdafx.cpp" : conf.PrecompSource;
 
         var absoluteSourceRootPath = Path.GetFullPath(SourceRootPath);
         if (!Directory.Exists(absoluteSourceRootPath))
