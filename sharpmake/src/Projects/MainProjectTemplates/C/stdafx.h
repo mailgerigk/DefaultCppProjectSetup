@@ -20,7 +20,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <tgmath.h>
 #include <time.h>
 #include <uchar.h>
 #include <wchar.h>
