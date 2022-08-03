@@ -11,6 +11,8 @@ public static class BaseConfiguration
         Optimization = Optimization.Debug | Optimization.Release,
     };
 
+    public const bool IsCPP = true;
+
     public const string SolutionName = "DefaultSolutionName";
     public const string MainProjectName = "DefaultMainProjectName";
 
