@@ -16,6 +16,8 @@ public abstract class BaseProject : Project
         conf.ProjectFileName = Name;
         conf.ProjectPath = BaseConfiguration.SharpmakeOutputDirectory;
 
+        conf.IncludePaths.Add(SourceRootPath);
+
         if (target.Optimization == Optimization.Debug)
         {
             conf.Options.Add(Options.Vc.Compiler.Inline.Disable);
