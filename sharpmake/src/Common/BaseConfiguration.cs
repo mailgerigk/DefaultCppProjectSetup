@@ -13,8 +13,8 @@ public static class BaseConfiguration
 
     public const bool IsCPP = true;
 
-    public const string SolutionName = "DefaultSolutionName";
-    public const string MainProjectName = "DefaultMainProjectName";
+    public static string SolutionName => new DirectoryInfo(BaseRepositoryDirectory).Name;
+    public static string MainProjectName => new DirectoryInfo(BaseRepositoryDirectory).Name;
 
     public static string DefaultSolutionSharpmakeCsPath = $"{nameof(DefaultSolutionSharpmakeCsPath)} is uninitialized";
     public static string BaseRepositoryDirectory => Path.Combine(DefaultSolutionSharpmakeCsPath, "..", "..", "..");
