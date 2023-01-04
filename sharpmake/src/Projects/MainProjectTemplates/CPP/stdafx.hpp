@@ -22,6 +22,10 @@
 // 'name': a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not
 // trivial
 #pragma warning(disable : 5220)
+// implicit fall-through occurs here; are you missing a break statement? Use [[fallthrough]] when a break statement is intentionally omitted between cases
+#pragma warning(disable : 5262)
+// 'variable-name': 'const' variable is not used
+#pragma warning(disable : 5264)
 
 // Concepts library
 #include <concepts>
