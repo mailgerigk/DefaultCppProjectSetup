@@ -28,17 +28,17 @@ public sealed class SDL2Project : BaseProject
     {
         base.Configure(conf, target);
 
-        var platformTarget = target.Platform == Platform.win64 ? "x64" : "x86";
-        var libPath = Path.Combine(SourceRootPath, "lib", platformTarget);
-
-        conf.Output = Configuration.OutputType.Utility;
+        conf.Output = Configuration.OutputType.Lib;
 
         conf.IncludePaths.Clear();
         conf.IncludePaths.Add(Path.Combine(SourceRootPath, "include"));
 
-        conf.LibraryFiles.Add(Path.Combine(libPath, "SDL2.lib"));
-        conf.LibraryFiles.Add(Path.Combine(libPath, "SDL2main.lib"));
-        conf.LibraryFiles.Add(Path.Combine(libPath, "SDL2test.lib"));
+        var platformTarget = target.Platform == Platform.win64 ? "x64" : "x86";
+        var libPath = Path.Combine(SourceRootPath, "lib", platformTarget);
+        conf.LibraryPaths.Add(libPath);
+
+        conf.LibraryFiles.Add("SDL2main");
+        conf.LibraryFiles.Add("SDL2test");
 
         conf.TargetCopyFiles.Add(Path.Combine(libPath, "SDL2.dll"));
     }
