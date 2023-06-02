@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 
 [Generate]
-public sealed class SDL2 : BaseProject
+public sealed class SDL2Project : BaseProject
 {
-    public SDL2()
+    public SDL2Project()
     {
         Name = "SDL2";
 
@@ -26,12 +26,14 @@ public sealed class SDL2 : BaseProject
 
     public override void Configure(Configuration conf, Target target)
     {
-        bool is_x64 = target.Platform == Platform.win64;
-        var platformTarget = is_x64 ? "x64" : "x86";
+        base.Configure(conf, target);
+
+        var platformTarget = target.Platform == Platform.win64 ? "x64" : "x86";
         var libPath = Path.Combine(SourceRootPath, "lib", platformTarget);
 
         conf.Output = Configuration.OutputType.Utility;
 
+        conf.IncludePaths.Clear();
         conf.IncludePaths.Add(Path.Combine(SourceRootPath, "include"));
 
         conf.LibraryFiles.Add(Path.Combine(libPath, "SDL2.lib"));
