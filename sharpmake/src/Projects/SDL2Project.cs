@@ -11,7 +11,7 @@ public sealed class SDL2Project : BaseProject
     {
         Name = "SDL2";
 
-        var directory = Directory.GetDirectories(BaseConfiguration.VendorDirectory).Where(dir => dir.StartsWith("SDL2-devel")).Last();
+        var directory = Directory.GetDirectories(BaseConfiguration.VendorDirectory).Where(dir => dir.Contains("SDL2-devel")).Last();
         var subdirectories = Directory.GetDirectories(directory);
         if (!subdirectories.Contains("include") && subdirectories.Length == 1)
         {
