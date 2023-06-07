@@ -13,6 +13,9 @@ public static class BaseConfiguration
 
     public const bool IsCPP = true;
 
+    public const string TranslationUnitExtension = IsCPP ? ".cpp" : ".c";
+    public const string HeaderExtension = IsCPP ? ".hpp" : ".h";
+
     public static string SolutionName => new DirectoryInfo(BaseRepositoryDirectory).Name;
     public static string MainProjectName => new DirectoryInfo(BaseRepositoryDirectory).Name;
 
@@ -20,7 +23,7 @@ public static class BaseConfiguration
     public static string BaseRepositoryDirectory => Path.Combine(DefaultSolutionSharpmakeCsPath, "..", "..", "..");
     public static string SrcDirectory => Path.Combine(BaseRepositoryDirectory, "src");
     public static string BinDirectory => Path.Combine(BaseRepositoryDirectory, "bin");
-	public static string VendorDirectory => Path.Combine(BaseRepositoryDirectory, "vendor");
+    public static string VendorDirectory => Path.Combine(BaseRepositoryDirectory, "vendor");
     public static string SharpmakeOutputDirectory => Path.Combine(BinDirectory, "sharpmake");
 
     public static string ProjectTargetDirectory => Path.Combine(BinDirectory, "[conf.Platform]", "[target.ProjectConfigurationName]");

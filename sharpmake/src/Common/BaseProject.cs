@@ -5,6 +5,8 @@ using System.IO;
 
 public abstract class BaseProject : Project
 {
+    public string TypeNameWithoutPostfix => GetType().Name.Replace("Project", "").ToLowerInvariant();
+
     protected BaseProject()
     {
         AddTargets(BaseConfiguration.Target);
