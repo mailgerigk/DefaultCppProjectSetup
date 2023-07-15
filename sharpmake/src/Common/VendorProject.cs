@@ -51,6 +51,22 @@ public abstract class VendorProject : BaseProject
                 }
             }
         }
+        // no libraryPaths found that contain either x86 or x64, try just a lib folder then
+        if(!libraryPaths.Any())
+        {
+            foreach (var directory in Directory.GetDirectories(SourceRootPath, "lib", SearchOption.AllDirectories))
+            {
+                foreach (var file in Directory.GetFiles(directory, "*.lib", SearchOption.AllDirectories))
+                {
+                    libraryPaths.Add(Path.GetDirectoryName(file));
+                    libraryFiles.Add(Path.GetFileNameWithoutExtension(file));
+                }
+                foreach (var file in Directory.GetFiles(directory, "*.dll", SearchOption.AllDirectories))
+                {
+                    conf.TargetCopyFiles.Add(file);
+                }
+            }
+        }
 
         conf.LibraryPaths.AddRange(libraryPaths);
         conf.LibraryFiles.AddRange(libraryFiles);

@@ -163,3 +163,6 @@
 #include <thread>
 
 #pragma warning(pop)
+
+#include "stdafx_raylib.hpp"
+#include "stdafx_sdl.hpp"

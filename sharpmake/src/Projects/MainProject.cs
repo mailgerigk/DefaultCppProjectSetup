@@ -9,12 +9,16 @@ public sealed class MainProject : DefaultMainProject
     {
         base.Configure(conf, target);
 
-        if(SDL2Project.CanAdd)
+        if (RaylibProject.CanAdd)
+        {
+            conf.LibraryFiles.Add("opengl32");
+            conf.AddPrivateDependency<RaylibProject>(target);
+        }
+        if (SDL2Project.CanAdd)
         {
             conf.LibraryFiles.Add("opengl32");
             conf.AddPrivateDependency<SDL2Project>(target);
         }
-
 	// TODO: add more project dependencies
     }
 }
