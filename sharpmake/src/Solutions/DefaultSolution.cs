@@ -3,6 +3,7 @@ using Sharpmake;
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 [module: Include("../*/*.cs")]
 [module: Include("../*/*/*.cs")]
@@ -36,7 +37,17 @@ public sealed class DefaultSolution : Solution
             .Where(type => typeof(BaseProject).IsAssignableFrom(type) && !type.IsAbstract);
         foreach (var projectType in projectTypes)
         {
-            conf.AddProject(projectType, target, solutionFolder: BaseProject.GetSolutionFolder(projectType));
+            if(projectType.GetProperty("CanAdd", BindingFlags.Static | BindingFlags.Public) is PropertyInfo property)
+            {
+                if(property.GetValue(null) is true)
+                {
+                    conf.AddProject(projectType, target, solutionFolder: BaseProject.GetSolutionFolder(projectType));
+                }
+            }
+            else
+            {
+                conf.AddProject(projectType, target, solutionFolder: BaseProject.GetSolutionFolder(projectType));
+            }
         }
 
         conf.SetStartupProject<MainProject>();

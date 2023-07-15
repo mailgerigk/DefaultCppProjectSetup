@@ -9,8 +9,11 @@ public sealed class MainProject : DefaultMainProject
     {
         base.Configure(conf, target);
 
-        conf.LibraryFiles.Add("opengl32");
-        conf.AddPrivateDependency<SDL2Project>(target);
+        if(SDL2Project.CanAdd)
+        {
+            conf.LibraryFiles.Add("opengl32");
+            conf.AddPrivateDependency<SDL2Project>(target);
+        }
 
 	// TODO: add more project dependencies
     }
