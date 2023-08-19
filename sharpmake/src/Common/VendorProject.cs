@@ -17,13 +17,14 @@ public abstract class VendorProject : BaseProject
         Name = TypeNameWithoutPostfix;
         SourceRootPath = Path.Combine(BaseConfiguration.VendorDirectory, VendorFolder);
         Debug.Assert(Directory.Exists(SourceRootPath));
+        UsePrecompiledHeaders = false;
     }
 
     public override void Configure(Configuration conf, Target target)
     {
         base.Configure(conf, target);
 
-        conf.Output = Configuration.OutputType.Lib;
+        conf.Output = Configuration.OutputType.Utility;
 
         conf.SourceFilesCompileAsCRegex.Clear();
         conf.SourceFilesCompileAsCPPRegex.Clear();
