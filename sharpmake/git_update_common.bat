@@ -1,4 +1,4 @@
-pushd %~dp0\src\Common
+pushd %~dp0src\Common
 git checkout -
 git pull
 popd
